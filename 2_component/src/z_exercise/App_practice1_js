@@ -1,0 +1,32 @@
+import { useState } from "react";
+
+function useCounter(initValue) {
+  const [count, setCount] = useState(initValue);
+
+  const incrementCount = () => setCount((c) => c + 1);
+  const decrementCount = () => setCount((c) => Math.max(c - 1, 0));
+
+  return [count, incrementCount, decrementCount];
+}
+
+
+function CounterComponent() {
+  const [count, increment, decrement] = useCounter(0);
+
+const containerStyle = { display: 'flex', alignItems: 'center' };
+  const buttonStyle = { width: '30px', height: '30px' };
+  const displayStyle = { margin: '0 10px', minWidth: '20px', textAlign: 'center' };
+
+  
+
+    return (
+    <div style={containerStyle}>
+      <button style={buttonStyle} onClick={decrement}>▼</button>
+      <div style={displayStyle}>{count}</div>
+      <button style={buttonStyle} onClick={increment}>▲</button>
+    </div>
+  );
+}
+
+
+export default CounterComponent;
